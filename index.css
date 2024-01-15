@@ -1,0 +1,30 @@
+body {
+  background-image: url(images/table.jpg);
+  font-family: "Trebuchet MS";
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+h1 {
+  color: goldenrod;
+  font-size: 50px;
+}
+p {
+  font-size: 20px;
+}
+#message-el {
+  font-style: italic;
+}
+#start-btn {
+  color: #016f32;
+  width: 150px;
+  background-color: goldenrod;
+  border-radius: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  border: none;
+  font-size: 20px;
+}
