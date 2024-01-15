@@ -28,3 +28,15 @@ p {
   border: none;
   font-size: 20px;
 }
+#new-card-btn {
+  color: #016f32;
+  width: 150px;
+  background-color: goldenrod;
+  border-radius: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  border: none;
+  font-size: 20px;
+  margin-top: 20px;
+}
