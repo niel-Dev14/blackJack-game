@@ -51,11 +51,13 @@ function renderGame() {
   } else if (sum === 21) {
     message = "Wohoo! You've got Blackjack!";
     hasBlackJack = true;
-    chipsHandling();
+    player.chips += 10;
+    playerEl.textContent = `${player.name}: $${player.chips}`;
   } else {
     message = "You're out of the game!";
     isAlive = false;
-    chipsHandling();
+    player.chips -= 10;
+    playerEl.textContent = `${player.name}: $${player.chips}`;
   }
   messageEl.textContent = message;
 }
@@ -67,18 +69,5 @@ function newCard() {
     cards.push(card);
     sum += card;
     renderGame();
-  }
-}
-
-function chipsHandling() {
-  if (hasBlackJack === true) {
-    player.chips += 10;
-    playerEl.textContent = `${player.name}: $${player.chips}`;
-  } else if (isAlive === false) {
-    player.chips -= 10;
-    playerEl.textContent = `${player.name}: $${player.chips}`;
-    if (player.chips === 0) {
-      alert("Out of chips please reload your browser!");
-    }
   }
 }
