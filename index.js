@@ -1,15 +1,23 @@
-let firstCard = getRandomCard();
-let secondCard = getRandomCard();
-let cards = [firstCard, secondCard]; //store cards on array
-let sum = firstCard + secondCard;
+//create object for the player
+let player = {
+  name: "Your Chips: ",
+  chips: 5000,
+};
+
+let cards = []; //store cards on array
+let sum = 0;
 let hasBlackJack = false;
-let isAlive = true;
+let isAlive = false;
 let message = "";
+
 let messageEl = document.getElementById("message-el");
 // let sumEl = document.getElementById("sum-el");
 //Another way of manipulating DOM
 let sumEl = document.querySelector(".sum-el");
 let cardsEl = document.querySelector(".cards-el");
+let playerEl = document.querySelector("#player-el");
+
+playerEl.textContent = `${player.name}: $${player.chips}`;
 
 function getRandomCard() {
   let randomNumber = Math.floor(Math.random() * 14);
@@ -24,6 +32,11 @@ function getRandomCard() {
 }
 
 function startGame() {
+  let firstCard = getRandomCard();
+  let secondCard = getRandomCard();
+  cards = [firstCard, secondCard];
+  sum = firstCard + secondCard;
+  isAlive = true;
   renderGame();
 }
 
@@ -38,16 +51,34 @@ function renderGame() {
   } else if (sum === 21) {
     message = "Wohoo! You've got Blackjack!";
     hasBlackJack = true;
+    chipsHandling();
   } else {
     message = "You're out of the game!";
     isAlive = false;
+    chipsHandling();
   }
   messageEl.textContent = message;
 }
 
 function newCard() {
-  let card = getRandomCard();
-  cards.push(card);
-  sum += card;
-  renderGame();
+  // Only allow the player to get a new card if she IS alive and does NOT have Blackjack
+  if (isAlive === true && hasBlackJack === false) {
+    let card = getRandomCard();
+    cards.push(card);
+    sum += card;
+    renderGame();
+  }
+}
+
+function chipsHandling() {
+  if (hasBlackJack === true) {
+    player.chips += 10;
+    playerEl.textContent = `${player.name}: $${player.chips}`;
+  } else if (isAlive === false) {
+    player.chips -= 10;
+    playerEl.textContent = `${player.name}: $${player.chips}`;
+    if (player.chips === 0) {
+      alert("Out of chips please reload your browser!");
+    }
+  }
 }
